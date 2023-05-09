@@ -1,0 +1,37 @@
+package vn.com.devmaster.services.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import vn.com.devmaster.services.domain.enums.VehicleRequestStatusEnum;
+
+import javax.persistence.*;
+import java.time.Instant;
+
+@Table(name = "vehicle_request")
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class VehicleRequest extends AbstractAuditingEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    @Column(name = "code", length = 50)
+    private String code;
+
+    @Column(name = "status", length = 20)
+    @Enumerated(EnumType.STRING)
+    private VehicleRequestStatusEnum status;
+
+    @Column(name = "pic")
+    private String pic;
+
+    @Column(name = "pic_date")
+    private Instant picDate;
+
+    @Column(name = "note", length = 4000)
+    private String note;
+}
