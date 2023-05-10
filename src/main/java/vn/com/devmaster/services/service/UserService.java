@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vn.com.devmaster.services.domain.Building;
 import vn.com.devmaster.services.domain.User;
+import vn.com.devmaster.services.domain.enums.RoleEnum;
 import vn.com.devmaster.services.repository.BuildingRepository;
 import vn.com.devmaster.services.repository.UserRepository;
 import vn.com.devmaster.services.service.dto.UserDTO;
 import vn.com.devmaster.services.service.mapper.UserMapper;
 
+import java.util.Optional;
 
 
 @Service
@@ -43,5 +45,15 @@ public class UserService {
         userRepository.save(user);
     }
 
+    @Transactional
+    public UserDTO getByRole(RoleEnum role){
+        Optional<User> optionalUser = userRepository.findByRole(role);
+        if (!optionalUser.isPresent()){
+            throw new RuntimeException("not found");
+        }
+        User user = optionalUser.get();
+        UserDTO userDTO = userMapper.toDto(user);
+        return userDTO;
+    }
 
 }

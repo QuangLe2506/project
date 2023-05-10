@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import vn.com.devmaster.services.domain.Building;
 import vn.com.devmaster.services.domain.User;
+import vn.com.devmaster.services.domain.enums.RoleEnum;
 
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
             " or u.email like concat('%',:keyword, '%') " )
     Page<User> findByKeyword(@Param("keyword") String keyword, Pageable pageable);
 
+    @Query(value = "select u from User u where u.role = :role")
+    Optional<User> findByRole(@Param("role") RoleEnum role);
 
     Optional<User> findByAccount(String account);
 }
