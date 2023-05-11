@@ -43,7 +43,7 @@ public class VehicleHistory extends AbstractAuditingEntity {
     private String ticket;
 
     @Column(name = "status")
-    private Integer status;
+    private Boolean status;
 
     @Column(name = "building_id")
     private Long buildingId;
