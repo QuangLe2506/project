@@ -3,7 +3,6 @@ package vn.com.devmaster.services.resources;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import vn.com.devmaster.services.domain.VehicleHistory;
 import vn.com.devmaster.services.service.VehicleService;
 import vn.com.devmaster.services.service.dto.VehicleDTO;
 import vn.com.devmaster.services.service.dto.VehicleHistoryDTO;
